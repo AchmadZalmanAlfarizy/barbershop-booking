@@ -24,7 +24,7 @@ class AdminController extends Controller
         ]);
 
         $adminUser = env('ADMIN_USERNAME', 'admin');
-        $adminPass = env('ADMIN_PASSWORD', 'admin123');
+        $adminPass = env('ADMIN_PASSWORD', 'password');
 
         if ($request->username === $adminUser && $request->password === $adminPass) {
             Session::put('admin_logged_in', true);

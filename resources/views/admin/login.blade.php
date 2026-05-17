@@ -27,7 +27,7 @@
             @csrf
 
             <div>
-                <label class="block text-gray-700 font-semibold mb-2">Username</label>
+                <label class="block text-gray-700 font-semibold mb-2">Email / Admin ID</label>
                 <input type="text"
                        name="username"
                        value="{{ old('username') }}"
