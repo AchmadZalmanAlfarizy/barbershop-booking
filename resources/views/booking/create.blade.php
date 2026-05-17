@@ -7,14 +7,14 @@
 <div class="max-w-2xl mx-auto">
 
     {{-- â•â•â• PAGE HEADER â•â•â• --}}
-    <div class="text-center mb-8">
+    <div class="text-center mb-8 fade-in-up">
         <p class="text-amber-400 text-sm font-semibold uppercase tracking-widest mb-2">Reservasi Kursi</p>
-        <h1 class="text-3xl sm:text-4xl font-black text-white mb-2">Buat <span class="text-gold">Booking</span></h1>
+        <h1 class="text-3xl sm:text-4xl font-black text-white mb-2">Buat <span class="text-gold gradient-wave">Booking</span></h1>
         <p class="text-stone-400">Isi form berikut. Tidak perlu buat akun &mdash; langsung dapat nomor antrian!</p>
     </div>
 
     {{-- â•â•â• ALGORITHM PROGRESS STEPS â•â•â• --}}
-    <div class="bg-stone-900 border border-stone-800 rounded-2xl p-5 mb-8">
+    <div class="glass-effect rounded-2xl p-5 mb-8 fade-in-up-delayed">
         <div class="flex items-center justify-between relative">
             {{-- Connector --}}
             <div class="absolute top-4 left-[20%] right-[20%] h-px bg-stone-700 z-0"></div>
@@ -29,8 +29,8 @@
             @endphp
 
             @foreach($formSteps as $idx => $fstep)
-                <div class="flex flex-col items-center gap-1.5 z-10 flex-1">
-                    <div class="w-8 h-8 rounded-full flex items-center justify-center {{ $idx < 2 ? 'bg-amber-500 shadow-lg shadow-amber-500/30' : 'bg-stone-800 border border-stone-700' }} transition-all">
+                <div class="flex flex-col items-center gap-1.5 z-10 flex-1 step-badge">
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center {{ $idx < 2 ? 'bg-gradient-to-br from-amber-500 to-amber-600 shadow-lg shadow-amber-500/40' : 'bg-stone-800/60 border border-stone-700' }} transition-all">
                         @if($idx < 2)
                             <svg class="w-4 h-4 text-stone-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
@@ -51,20 +51,21 @@
     <div class="bg-stone-900 border border-stone-800 rounded-3xl overflow-hidden shadow-2xl">
 
         {{-- Form Header with Image --}}
-        <div class="relative h-32 overflow-hidden">
+        <div class="relative h-40 overflow-hidden bg-gradient-to-br from-stone-800 to-stone-900">
             <img src="https://images.unsplash.com/photo-1605497787557-a9e00046ee0b?w=800&auto=format&fit=crop&q=80"
-                 alt="Barbershop" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/60 to-transparent"></div>
-            <div class="absolute bottom-4 left-6">
-                <p class="text-white font-bold text-lg">Form Booking</p>
-                <p class="text-stone-400 text-xs">Isi semua field dengan benar</p>
+                 alt="Barbershop" class="w-full h-full object-cover opacity-60">
+            <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-900/70 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-stone-950/80 via-transparent to-transparent"></div>
+            <div class="absolute bottom-5 left-6">
+                <p class="text-white font-bold text-lg leading-tight">Lengkapi Data</p>
+                <p class="text-amber-400/80 text-xs font-semibold mt-1">Dapatkan nomor antrian secara instant</p>
             </div>
         </div>
 
         <div class="p-6 sm:p-8">
 
             @if($errors->any())
-                <div class="bg-red-500/10 border border-red-500/30 text-red-400 rounded-xl p-4 mb-6">
+                <div class="bg-red-500/10 border border-red-500/30 text-red-400 rounded-xl p-4 mb-6 glass-effect">
                     <div class="flex items-center gap-2 mb-2">
                         <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
@@ -83,7 +84,7 @@
                 @csrf
 
                 {{-- Row 1: Nama + HP --}}
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 stagger-item">
                     <div>
                         <label class="block text-stone-300 font-semibold mb-2 text-sm">
                             Nama Lengkap <span class="text-red-400">*</span>
@@ -97,7 +98,7 @@
                             <input type="text" name="name" value="{{ old('name') }}"
                                    placeholder="Nama kamu..."
                                    required
-                                   class="w-full bg-stone-800 border border-stone-700 focus:border-amber-500 focus:ring-1 focus:ring-amber-500/20 text-white placeholder-stone-500 rounded-xl pl-10 pr-4 py-3 text-sm outline-none transition-all">
+                                   class="form-input w-full rounded-xl pl-10 pr-4 py-3 text-sm text-white">
                         </div>
                     </div>
 
@@ -114,13 +115,13 @@
                             <input type="tel" name="phone" value="{{ old('phone') }}"
                                    placeholder="08xxxxxxxxxx"
                                    required
-                                   class="w-full bg-stone-800 border border-stone-700 focus:border-amber-500 focus:ring-1 focus:ring-amber-500/20 text-white placeholder-stone-500 rounded-xl pl-10 pr-4 py-3 text-sm outline-none transition-all">
+                                   class="form-input w-full rounded-xl pl-10 pr-4 py-3 text-sm text-white">
                         </div>
                     </div>
                 </div>
 
                 {{-- Service --}}
-                <div>
+                <div class="stagger-item">
                     <label class="block text-stone-300 font-semibold mb-2 text-sm">
                         Pilih Layanan <span class="text-red-400">*</span>
                     </label>
@@ -131,7 +132,7 @@
                             </svg>
                         </div>
                         <select name="service_id" required
-                                class="w-full bg-stone-800 border border-stone-700 focus:border-amber-500 focus:ring-1 focus:ring-amber-500/20 text-white rounded-xl pl-10 pr-4 py-3 text-sm outline-none transition-all appearance-none">
+                                class="form-input w-full rounded-xl pl-10 pr-4 py-3 text-sm appearance-none text-white">
                             <option value="" class="text-stone-500">-- Pilih Layanan --</option>
                             @foreach($services as $service)
                                 <option value="{{ $service->id }}"
@@ -150,7 +151,7 @@
                 </div>
 
                 {{-- Date + Time --}}
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 stagger-item">
                     <div>
                         <label class="block text-stone-300 font-semibold mb-2 text-sm">
                             Tanggal <span class="text-red-400">*</span>
@@ -165,7 +166,7 @@
                                    value="{{ old('booking_date', today()->toDateString()) }}"
                                    min="{{ today()->toDateString() }}"
                                    required
-                                   class="w-full bg-stone-800 border border-stone-700 focus:border-amber-500 focus:ring-1 focus:ring-amber-500/20 text-white rounded-xl pl-10 pr-4 py-3 text-sm outline-none transition-all [color-scheme:dark]">
+                                   class="form-input w-full rounded-xl pl-10 pr-4 py-3 text-sm text-white [color-scheme:dark]">
                         </div>
                     </div>
 
@@ -180,7 +181,7 @@
                                 </svg>
                             </div>
                             <select name="booking_time" required
-                                    class="w-full bg-stone-800 border border-stone-700 focus:border-amber-500 focus:ring-1 focus:ring-amber-500/20 text-white rounded-xl pl-10 pr-4 py-3 text-sm outline-none transition-all appearance-none">
+                                    class="form-input w-full rounded-xl pl-10 pr-4 py-3 text-sm appearance-none text-white">
                                 <option value="">-- Pilih Waktu --</option>
                                 @foreach(range(8, 20) as $hour)
                                     @foreach(['00', '30'] as $minute)
@@ -201,7 +202,7 @@
                 </div>
 
                 {{-- Info Box --}}
-                <div class="bg-amber-500/5 border border-amber-500/20 rounded-xl p-4 flex gap-3">
+                <div class="bg-gradient-to-r from-amber-500/15 to-amber-500/5 border border-amber-500/40 rounded-xl p-4 flex gap-3 glass-effect stagger-item">
                     <svg class="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
@@ -212,8 +213,11 @@
                 </div>
 
                 <button type="submit"
-                        class="w-full btn-gold text-stone-900 text-base font-bold py-4 rounded-xl shadow-lg shadow-amber-500/20">
-                    Konfirmasi &amp; Dapat Nomor Antrian &rarr;
+                        class="w-full btn-gold text-stone-900 text-base font-bold py-4 rounded-xl shadow-lg shadow-amber-500/40 stagger-item group">
+                    <span class="flex items-center justify-center gap-2">
+                        <svg class="w-5 h-5 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        Konfirmasi &amp; Dapat Nomor Antrian
+                    </span>
                 </button>
             </form>
         </div>

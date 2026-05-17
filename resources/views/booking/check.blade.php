@@ -7,18 +7,18 @@
 <div class="max-w-lg mx-auto">
 
     {{-- Header --}}
-    <div class="text-center mb-8">
-        <div class="w-16 h-16 bg-amber-500/10 border border-amber-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+    <div class="text-center mb-8 fade-in-up">
+        <div class="w-16 h-16 bg-gradient-to-br from-amber-500/30 to-amber-500/10 border border-amber-500/30 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-amber-500/20">
             <svg class="w-8 h-8 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
             </svg>
         </div>
-        <h1 class="text-3xl font-black text-white mb-2">Cek <span class="text-gold">Antrian</span></h1>
+        <h1 class="text-3xl font-black text-white mb-2">Cek <span class="text-gold gradient-wave">Antrian</span></h1>
         <p class="text-stone-400">Masukkan nomor HP yang kamu daftarkan saat booking</p>
     </div>
 
     {{-- Search Form --}}
-    <div class="bg-stone-900 border border-stone-800 rounded-2xl p-6 mb-6">
+    <div class="glass-effect rounded-2xl p-6 mb-6 fade-in-up-delayed">
         <form method="GET" action="{{ route('booking.check') }}" class="flex gap-3">
             <div class="relative flex-1">
                 <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
@@ -30,11 +30,11 @@
                        value="{{ request('phone') }}"
                        placeholder="08xxxxxxxxxx"
                        required
-                       class="w-full bg-stone-800 border border-stone-700 focus:border-amber-500 focus:ring-1 focus:ring-amber-500/20 text-white placeholder-stone-500 rounded-xl pl-10 pr-4 py-3 text-sm outline-none transition-all">
+                       class="form-input w-full rounded-xl pl-10 pr-4 py-3 text-sm text-white">
             </div>
             <button type="submit"
-                    class="btn-gold text-stone-900 font-bold px-5 py-3 rounded-xl flex-shrink-0">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    class="btn-gold text-stone-900 font-bold px-5 py-3 rounded-xl flex-shrink-0 shadow-lg shadow-amber-500/30 group">
+                <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                 </svg>
             </button>
@@ -43,8 +43,8 @@
 
     {{-- Error State --}}
     @if(isset($error))
-        <div class="bg-red-500/10 border border-red-500/30 rounded-2xl p-6 text-center">
-            <div class="w-12 h-12 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+        <div class="bg-gradient-to-br from-red-500/20 to-red-500/5 border border-red-500/40 rounded-2xl p-6 text-center glass-effect fade-in-up-delayed" style="animation-delay: 0.2s;">
+            <div class="w-12 h-12 bg-gradient-to-br from-red-500/30 to-red-500/10 rounded-full flex items-center justify-center mx-auto mb-3">
                 <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                 </svg>
@@ -59,13 +59,12 @@
 
         {{-- Status: In Progress --}}
         @if($booking->status === 'in_progress')
-            <div class="relative bg-gradient-to-br from-blue-600/20 to-blue-500/5 border border-blue-500/30 rounded-2xl p-6 overflow-hidden">
-                <div class="absolute -top-10 -right-10 w-32 h-32 bg-blue-500/10 rounded-full"></div>
-                <div class="absolute -bottom-5 -left-5 w-20 h-20 bg-blue-500/5 rounded-full"></div>
+            <div class="relative bg-gradient-to-br from-blue-600/20 to-blue-500/5 border border-blue-500/40 rounded-2xl p-6 overflow-hidden glass-effect fade-in-up-delayed" style="animation-delay: 0.2s;">
+                <div class="absolute -top-10 -right-10 w-32 h-32 bg-blue-500/10 rounded-full blur-xl"></div>
+                <div class="absolute -bottom-5 -left-5 w-20 h-20 bg-blue-500/5 rounded-full blur-xl"></div>
                 <div class="relative z-10">
                     <div class="flex items-center gap-2 mb-5">
-                        <span class="relative flex h-3 w-3">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                        <span class="relative flex h-3 w-3 badge-live">
                             <span class="relative inline-flex rounded-full h-3 w-3 bg-blue-500"></span>
                         </span>
                         <span class="text-blue-400 font-bold text-sm uppercase tracking-widest">Sedang Dilayani</span>
@@ -73,28 +72,31 @@
                     <div class="flex items-center gap-6 mb-6">
                         <div>
                             <p class="text-stone-400 text-xs mb-1">No. Antrian</p>
-                            <p class="text-7xl font-black text-white leading-none">{{ str_pad($booking->queue_number, 3, '0', STR_PAD_LEFT) }}</p>
+                            <div class="relative inline-block">
+                                <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-blue-500/5 rounded-lg blur-lg"></div>
+                                <p class="relative text-6xl font-black text-white leading-none">{{ str_pad($booking->queue_number, 3, '0', STR_PAD_LEFT) }}</p>
+                            </div>
                         </div>
-                        <div class="flex-1 space-y-2">
+                        <div class="flex-1 space-y-3">
                             <div>
-                                <p class="text-stone-500 text-xs">Nama</p>
+                                <p class="text-stone-500 text-xs font-medium">Nama</p>
                                 <p class="text-white font-semibold text-sm">{{ $booking->name }}</p>
                             </div>
                             <div>
-                                <p class="text-stone-500 text-xs">Layanan</p>
+                                <p class="text-stone-500 text-xs font-medium">Layanan</p>
                                 <p class="text-white font-semibold text-sm">{{ $booking->service->name }}</p>
                             </div>
                             <div>
-                                <p class="text-stone-500 text-xs">Waktu</p>
+                                <p class="text-stone-500 text-xs font-medium">Waktu</p>
                                 <p class="text-white font-semibold text-sm">{{ $booking->booking_time }}</p>
                             </div>
                         </div>
                     </div>
-                    <div class="bg-blue-500/10 border border-blue-500/20 rounded-xl p-3 flex items-center gap-3">
-                        <svg class="w-5 h-5 text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="bg-gradient-to-r from-blue-500/20 to-blue-500/5 border border-blue-500/40 rounded-xl p-4 flex items-center gap-3 glass-effect">
+                        <svg class="w-5 h-5 text-blue-400 flex-shrink-0 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                         </svg>
-                        <p class="text-blue-300 text-sm font-medium">Barber sedang melayani kamu sekarang! Silakan masuk.</p>
+                        <p class="text-blue-300 text-sm font-medium">Barber sedang melayani kamu sekarang! Silakan masuk ke barbershop.</p>
                     </div>
                 </div>
             </div>
@@ -108,12 +110,11 @@
                     ->count() + 1;
                 $waitMinutes = ($queuePosition - 1) * 30;
             @endphp
-            <div class="relative bg-gradient-to-br from-amber-500/20 to-amber-500/5 border border-amber-500/30 rounded-2xl p-6 overflow-hidden">
-                <div class="absolute -top-10 -right-10 w-32 h-32 bg-amber-500/10 rounded-full"></div>
+            <div class="relative bg-gradient-to-br from-amber-500/20 to-amber-500/5 border border-amber-500/40 rounded-2xl p-6 overflow-hidden glass-effect fade-in-up-delayed" style="animation-delay: 0.2s;">
+                <div class="absolute -top-10 -right-10 w-32 h-32 bg-amber-500/10 rounded-full blur-xl"></div>
                 <div class="relative z-10">
                     <div class="flex items-center gap-2 mb-5">
-                        <span class="relative flex h-3 w-3">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                        <span class="relative flex h-3 w-3 badge-live">
                             <span class="relative inline-flex rounded-full h-3 w-3 bg-amber-500"></span>
                         </span>
                         <span class="text-amber-400 font-bold text-sm uppercase tracking-widest">Menunggu Giliran</span>
@@ -122,32 +123,35 @@
                     <div class="flex items-center gap-6 mb-5">
                         <div>
                             <p class="text-stone-400 text-xs mb-1">No. Antrian</p>
-                            <p class="text-7xl font-black text-amber-400 leading-none">{{ str_pad($booking->queue_number, 3, '0', STR_PAD_LEFT) }}</p>
+                            <div class="relative inline-block">
+                                <div class="absolute inset-0 bg-gradient-to-r from-amber-500/20 to-amber-500/5 rounded-lg blur-lg"></div>
+                                <p class="relative text-6xl font-black text-amber-400 leading-none">{{ str_pad($booking->queue_number, 3, '0', STR_PAD_LEFT) }}</p>
+                            </div>
                         </div>
-                        <div class="flex-1 space-y-2">
+                        <div class="flex-1 space-y-3">
                             <div>
-                                <p class="text-stone-500 text-xs">Nama</p>
+                                <p class="text-stone-500 text-xs font-medium">Nama</p>
                                 <p class="text-white font-semibold text-sm">{{ $booking->name }}</p>
                             </div>
                             <div>
-                                <p class="text-stone-500 text-xs">Layanan</p>
+                                <p class="text-stone-500 text-xs font-medium">Layanan</p>
                                 <p class="text-white font-semibold text-sm">{{ $booking->service->name }}</p>
                             </div>
                             <div>
-                                <p class="text-stone-500 text-xs">Tanggal &amp; Waktu</p>
+                                <p class="text-stone-500 text-xs font-medium">Tanggal &amp; Waktu</p>
                                 <p class="text-white font-semibold text-sm">{{ $booking->booking_date->format('d/m/Y') }} pukul {{ $booking->booking_time }}</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-2 gap-3 mb-4">
-                        <div class="bg-stone-900/60 rounded-xl p-3 text-center">
-                            <p class="text-stone-400 text-xs mb-1">Posisi Antrian</p>
-                            <p class="text-2xl font-black text-white">{{ $queuePosition }}</p>
-                            <p class="text-stone-500 text-xs">dari depan</p>
+                        <div class="bg-gradient-to-br from-stone-800/60 to-stone-900/40 border border-stone-700/40 rounded-xl p-4 text-center glass-effect">
+                            <p class="text-stone-400 text-xs mb-2 font-medium">Posisi Antrian</p>
+                            <p class="text-3xl font-black text-amber-400">{{ $queuePosition }}</p>
+                            <p class="text-stone-500 text-xs mt-1">dari depan</p>
                         </div>
-                        <div class="bg-stone-900/60 rounded-xl p-3 text-center">
-                            <p class="text-stone-400 text-xs mb-1">Estimasi Tunggu</p>
+                        <div class="bg-gradient-to-br from-stone-800/60 to-stone-900/40 border border-stone-700/40 rounded-xl p-4 text-center glass-effect">
+                            <p class="text-stone-400 text-xs mb-2 font-medium">Estimasi Tunggu</p>
                             <p class="text-2xl font-black text-amber-400">~{{ $waitMinutes }}</p>
                             <p class="text-stone-500 text-xs">menit lagi</p>
                         </div>
