@@ -7,88 +7,103 @@
 {{-- ═══════════════════════════════════════════════════════
      HERO SECTION – Full-screen with Unsplash background
 ═══════════════════════════════════════════════════════ --}}
-<section class="relative rounded-3xl overflow-hidden mb-12 min-h-[560px] flex items-center">
+<section class="relative overflow-hidden mb-12 min-h-[700px] md:min-h-screen flex items-center">
 
-    {{-- Background Image from Unsplash --}}
-    <div class="absolute inset-0">
+    {{-- Background Image from Unsplash (Full Width) --}}
+    <div class="absolute inset-0 -left-1/4 -right-1/4">
         <img
-            src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1400&auto=format&fit=crop&q=85"
+            src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1800&auto=format&fit=crop&q=90"
             alt="Barber sedang bekerja"
             class="w-full h-full object-cover"
             loading="eager"
         >
-        <div class="absolute inset-0 bg-gradient-to-r from-stone-950/95 via-stone-900/80 to-transparent"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-transparent to-transparent"></div>
+        <!-- Multi-layer gradient for sophisticated look -->
+        <div class="absolute inset-0 bg-gradient-to-r from-stone-950/98 via-stone-900/70 to-stone-900/40"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-stone-950/60 via-transparent to-stone-950/50"></div>
+        <!-- Radial gradient accent -->
+        <div class="absolute top-0 left-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl"></div>
     </div>
 
+    {{-- Decorative Elements --}}
+    <div class="absolute top-20 left-10 w-2 h-2 bg-amber-400 rounded-full opacity-60 z-20"></div>
+    <div class="absolute top-40 right-20 w-3 h-3 bg-amber-400/30 rounded-full opacity-40 z-20"></div>
+    <div class="absolute bottom-32 left-1/4 w-1.5 h-1.5 bg-emerald-400/40 rounded-full opacity-50 z-20"></div>
+
     {{-- Hero Content --}}
-    <div class="relative z-10 w-full px-8 md:px-14 py-16">
-        <div class="max-w-xl">
-            <div class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 rounded-full px-4 py-1.5 mb-6">
-                <span class="relative flex h-2 w-2">
+    <div class="relative z-10 w-full px-6 md:px-16 py-16 md:py-20 text-center md:text-left">
+        <div class="max-w-2xl mx-auto md:mx-0">
+            <!-- Status Badge -->
+            <div class="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500/15 to-amber-400/5 border border-amber-500/40 rounded-full px-4 py-2 mb-6 backdrop-blur-sm">
+                <span class="relative flex h-2.5 w-2.5">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
                 </span>
-                <span class="text-amber-400 text-xs font-semibold tracking-wider uppercase">Buka Sekarang</span>
+                <span class="text-amber-300 text-xs font-semibold tracking-widest uppercase">Buka Sekarang</span>
             </div>
 
-            <h1 class="font-display text-5xl md:text-6xl font-bold text-white leading-tight mb-4">
-                Tampil <span class="text-gold">Percaya</span><br>Diri Setiap Hari
+            <!-- Main Heading -->
+            <h1 class="text-5xl md:text-7xl font-black text-white leading-tight mb-4 tracking-tight drop-shadow-lg">
+                Tampil<br>
+                <span class="text-gold">Percaya Diri</span><br>
+                <span class="text-4xl md:text-6xl font-bold">Setiap Hari</span>
             </h1>
-            <p class="text-stone-300 text-lg mb-8 leading-relaxed">
+
+            <!-- Subheading -->
+            <p class="text-base md:text-xl text-stone-200 mb-8 leading-relaxed max-w-xl drop-shadow-md">
                 Booking barbershop premium dalam hitungan detik. Tidak perlu antri lama — sistem kami mengelola antrian secara otomatis dan transparan.
             </p>
 
-            <div class="flex flex-col sm:flex-row gap-3">
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                 <a href="{{ route('booking.create') }}"
-                   class="btn-gold text-stone-900 text-base font-bold px-8 py-4 rounded-2xl shadow-2xl shadow-amber-500/30 text-center">
+                   class="btn-gold text-stone-900 text-base md:text-lg font-black px-8 md:px-10 py-3 md:py-4 rounded-2xl shadow-2xl shadow-amber-500/40 text-center hover:scale-105 transition-transform duration-300">
                     Booking Sekarang &rarr;
                 </a>
                 <a href="{{ route('booking.check') }}"
-                   class="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white text-base font-semibold px-8 py-4 rounded-2xl transition-all duration-200">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                   class="flex items-center justify-center gap-3 bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/30 text-white text-base md:text-lg font-semibold px-8 md:px-10 py-3 md:py-4 rounded-2xl transition-all duration-300 hover:scale-105">
+                    <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
                     </svg>
-                    Cek Antrian Saya
+                    Cek Antrian
                 </a>
             </div>
         </div>
 
         {{-- Live Queue Card (desktop) --}}
-        <div class="absolute right-8 top-1/2 -translate-y-1/2 hidden lg:block">
-            <div class="bg-stone-900/90 backdrop-blur-md border border-stone-700/60 rounded-2xl p-6 w-64 shadow-2xl">
-                <div class="flex items-center justify-between mb-4">
-                    <span class="text-stone-400 text-xs font-semibold uppercase tracking-widest">Live Queue</span>
-                    <span class="relative flex h-2 w-2">
+        <div class="absolute right-8 lg:right-16 top-1/2 -translate-y-1/2 hidden lg:block">
+            <div class="bg-stone-900/80 backdrop-blur-xl border border-stone-700/50 rounded-3xl p-8 w-72 shadow-2xl hover:scale-105 transition-transform duration-300">
+                <div class="flex items-center justify-between mb-6">
+                    <span class="text-amber-300 text-xs font-bold uppercase tracking-widest">📡 Live Queue</span>
+                    <span class="relative flex h-2.5 w-2.5">
                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
                     </span>
                 </div>
                 @if($currentQueue)
-                    <div class="text-center mb-4">
-                        <p class="text-stone-400 text-xs mb-1">Sedang Dilayani</p>
-                        <p class="text-6xl font-black text-amber-400">{{ str_pad($currentQueue->queue_number, 3, '0', STR_PAD_LEFT) }}</p>
-                        <p class="text-stone-300 text-sm mt-1 truncate">{{ $currentQueue->name }}</p>
-                        <p class="text-stone-500 text-xs">{{ $currentQueue->service->name }}</p>
+                    <div class="text-center mb-6">
+                        <p class="text-stone-400 text-xs mb-2 font-semibold">Sedang Dilayani</p>
+                        <p class="text-7xl font-black text-amber-400 drop-shadow-lg">{{ str_pad($currentQueue->queue_number, 3, '0', STR_PAD_LEFT) }}</p>
+                        <p class="text-stone-200 text-sm mt-3 font-semibold truncate">{{ $currentQueue->name }}</p>
+                        <p class="text-stone-500 text-xs mt-1">{{ $currentQueue->service->name }}</p>
                     </div>
                 @else
-                    <div class="text-center mb-4">
-                        <div class="w-16 h-16 bg-stone-800 rounded-full flex items-center justify-center mx-auto mb-2">
-                            <svg class="w-7 h-7 text-stone-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="text-center mb-6">
+                        <div class="w-20 h-20 bg-gradient-to-br from-stone-800 to-stone-900 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <svg class="w-9 h-9 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
                         </div>
-                        <p class="text-stone-400 text-sm">Belum ada antrian aktif</p>
+                        <p class="text-stone-400 text-sm font-medium">Belum ada antrian</p>
                     </div>
                 @endif
-                <div class="grid grid-cols-2 gap-2">
-                    <div class="bg-stone-800 rounded-xl p-3 text-center">
-                        <p class="text-2xl font-bold text-amber-400">{{ $waitingCount }}</p>
-                        <p class="text-stone-500 text-xs">Menunggu</p>
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="bg-gradient-to-br from-amber-500/20 to-amber-600/10 border border-amber-500/30 rounded-2xl p-4 text-center hover:border-amber-500/50 transition-colors">
+                        <p class="text-3xl font-black text-amber-400">{{ $waitingCount }}</p>
+                        <p class="text-stone-400 text-xs font-semibold mt-1">Menunggu</p>
                     </div>
-                    <div class="bg-stone-800 rounded-xl p-3 text-center">
-                        <p class="text-2xl font-bold text-amber-400">~{{ $waitingCount > 0 ? $waitingCount * 30 : 0 }}</p>
-                        <p class="text-stone-500 text-xs">Menit Tunggu</p>
+                    <div class="bg-gradient-to-br from-emerald-500/20 to-emerald-600/10 border border-emerald-500/30 rounded-2xl p-4 text-center hover:border-emerald-500/50 transition-colors">
+                        <p class="text-3xl font-black text-emerald-400">{{ $waitingCount > 0 ? $waitingCount * 30 : 0 }}</p>
+                        <p class="text-stone-400 text-xs font-semibold mt-1">Menit Est.</p>
                     </div>
                 </div>
             </div>
